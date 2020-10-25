@@ -4,13 +4,11 @@
 #' @param platforms What platforms
 #' @return The sum of \code{x} and \code{y}
 #' @examples
-#' @importFrom dplyr "%>%"
 #' # add(1, 1)
 
 ct_get_links <- function(x = "", platforms = "", count = 100, startDate = "", endDate = "", token = "")
 {
-  ct_token <- Sys.getenv("CT_TOKEN")
-
+  token <- Sys.getenv("CT_TOKEN")
   endpoint.links <- "https://api.crowdtangle.com/links"
   query.string <- paste0(endpoint.links, "?link=", x, "&platforms=", platforms, "&count=", count, "&startDate=", startDate, "&endDate=", endDate, "&token=", token)
   response.json <- try(jsonlite::fromJSON(query.string), silent = TRUE)
@@ -35,13 +33,14 @@ ct_get_links <- function(x = "", platforms = "", count = 100, startDate = "", en
   }
 }
 
-ct_get_links(searchTerm = "school")
+#ct_get_links(searchTerm = "school")
 
 #' ct_get_posts
 #'
 #' @param x A number
 #' @param platforms What platforms
 #' @return The sum of \code{x} and \code{y}
+#' @importFrom dplyr "%>%
 #' @examples
 #' # add(1, 1)
 
@@ -49,7 +48,7 @@ ct_get_posts <- function(listID = "", searchTerm = "", language = "",
                          types= "", minInteractions = 0, count = 100,
                          startDate = "", endDate = "", token = "")
 {
-  ct_token <- Sys.getenv("CT_TOKEN")
+  token <- Sys.getenv("CT_TOKEN")
   endpoint.posts <- "https://api.crowdtangle.com/posts"
   query.string <- paste0(endpoint.posts, "?listIds=", listID, "&searchTerm=", searchTerm, "&language=", language, "&types=", types, "&minInteractions=", minInteractions, "&count=", count, "&startDate=", startDate, "&endDate=", endDate, "&token=", token)
   response.json <- try(jsonlite::fromJSON(query.string), silent = TRUE)
@@ -59,8 +58,7 @@ ct_get_posts <- function(listID = "", searchTerm = "", language = "",
   return(dplyr::as_tibble(posts))
 }
 
-ct_get_posts(listID = "1461358",
-             searchTerm = "school")
+# ct_get_posts(listID = "1461358", searchTerm = "school")
 
 #' ct_search_posts
 #'
@@ -76,7 +74,7 @@ ct_search_posts <- function(x = "", and = "", or = "", not = "",
                             verifiedOnly = "false",  count = 100, startDate = "",
                             language = "en", endDate = "", token = "")
 {
-  ct_token <- Sys.getenv("CT_TOKEN")
+  token <- Sys.getenv("CT_TOKEN")
   endpoint.posts <- "https://api.crowdtangle.com/posts"
   query.string <- paste0(endpoint.posts,
                          "?searchTerm=", x,
@@ -94,4 +92,4 @@ ct_search_posts <- function(x = "", and = "", or = "", not = "",
   return(posts %>% dplyr::as_tibble())
 }
 
-ct_search_posts(x = "school")
+# ct_search_posts(x = "school")
