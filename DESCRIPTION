@@ -12,3 +12,5 @@ LazyData: true
 RoxygenNote: 7.1.1
 Imports: 
     magrittr
+URL: https://github.com/jrosen48/tidycrowdtangle
+BugReports: https://github.com/jrosen48/tidycrowdtangle/issues
