@@ -78,10 +78,10 @@ ct_search_posts <- function(x = "", and = "", or = "", not = "",
   endpoint.posts <- "https://api.crowdtangle.com/posts"
   query.string <- paste0(endpoint.posts,
                          "?searchTerm=", x,
-                         "&token=", token
+                         "&token=", token,
                          # "&and=", and,
                          # "&or=", or,
-                         # "&inAccountIds=", inAccountIds,
+                         "&inAccountIds=", inAccountIds
                          # "&inListIds=", inListIds,
                          # "&language=", language, "&types=", types, "&minInteractions=", minInteractions, "&count=", count, "&startDate=", startDate, "&endDate=", endDate, "&token=", token
                          )
@@ -92,4 +92,4 @@ ct_search_posts <- function(x = "", and = "", or = "", not = "",
   return(posts %>% dplyr::as_tibble())
 }
 
-# ct_search_posts(x = "school")
+ct_search_posts(x = "school")
